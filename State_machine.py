@@ -1,6 +1,9 @@
 __author__ = 'AlexisPotvin'
 
 #this state machine will have 9 state with 2 variable and 3 state for each variable
+#pan up = right pan down = left
+
+
 
 import servo
 
@@ -77,21 +80,63 @@ def state_machine_action (state):
     elif state == PANDTILTU:
         pandtiltu()
     else:
-        print"fatal error no good state in state machine"
+        print"fatal error no good state in (state machine action)"
 
     return state
 
 
-def state_machine_event_to_action (state,):
+def state_machine_event_to_action (state,antena_pan_angle,antena_tilt_angle,uav_pan_angle,uav_tilt_angle,angle_tolerence):
 
     if state == DONTMOVE:
+        if antena_pan_angle + angle_tolerence > uav_pan_angle:
+            state = PANDTILTN
+        elif antena_pan_angle < uav_pan_angle + angle_tolerence:
+            state = PANUTILTN
+        elif antena_tilt_angle + angle_tolerence > uav_tilt_angle:
+            state = PANNTILTD
+        elif antena_tilt_angle < uav_tilt_angle + angle_tolerence:
+            state = PANNTILTU
+        else :
+            state = DONTMOVE
 
 
     elif state == PANNTILTD:
+        if antena_pan_angle + angle_tolerence > uav_pan_angle:
+            state = PANDTILTD
+        elif antena_pan_angle < uav_pan_angle + angle_tolerence:
+            state = PANUTILTD
+        elif antena_tilt_angle + angle_tolerence > uav_tilt_angle:
+            state = PANNTILTD
+        elif antena_tilt_angle < uav_tilt_angle + angle_tolerence:
+            state = PANNTILTU
+        else :
+            state = DONTMOVE
 
     elif state == PANNTILTU:
 
+        if antena_pan_angle + angle_tolerence > uav_pan_angle:
+            state = PANDTILTU
+        elif antena_pan_angle < uav_pan_angle + angle_tolerence:
+            state = PANUTILTU
+        elif antena_tilt_angle + angle_tolerence > uav_tilt_angle:
+            state = PANNTILTD
+        elif antena_tilt_angle < uav_tilt_angle + angle_tolerence:
+            state = PANNTILTU
+        else :
+            state = DONTMOVE
+
     elif state == PANUTILTD:
+        if antena_pan_angle + angle_tolerence > uav_pan_angle:
+            state = PANDTILTD
+        elif antena_pan_angle < uav_pan_angle + angle_tolerence:
+            state = PANUTILTD
+        elif antena_tilt_angle + angle_tolerence > uav_tilt_angle:
+            state = PANUTILTD
+        elif antena_tilt_angle < uav_tilt_angle + angle_tolerence:
+            state = PANUTILTU
+        else :
+            state = DONTMOVE
+
 
     elif state == PANUTILTU:
 
