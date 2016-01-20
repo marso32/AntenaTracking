@@ -4,9 +4,9 @@ import servo
 import time
 
 #Acc.ImuInit()
-#while True:
-Acc.ReadImu(Antenna,5)
-print Antenna.roll, Antenna.pitch, Antenna.yaw 
+while True:
+	Acc.ReadImu(Antenna,5)
+	print Antenna.roll, Antenna.pitch, Antenna.yaw 
 
 while True :
 	print "Hold"

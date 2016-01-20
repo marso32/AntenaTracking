@@ -57,3 +57,7 @@ def update(yaw,pitch):
 	else:
                 pwm.setPWM(channel_pitch,0, pitch_hold)
 	
+def RefreshServo (tickvalue,channel):
+
+	pwm.setPWM(channel,0,tickvalue)
+

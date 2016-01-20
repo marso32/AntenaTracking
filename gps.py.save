@@ -6,7 +6,7 @@ import threading
 
 gpsd = None 
 
-#os.system ('clear')
+os.system ('clear')
 
 class GpsPoller(threading.Thread):
 	def __init__(self):
@@ -20,21 +20,20 @@ class GpsPoller(threading.Thread):
 		global gpsd
 		while gpsd.runnign:
 			gpsd.next()
-while True:
-#if __name__ == '__name__':
+
+if __name__ == '__name__':
 	gpsd = GpsPoller()
 	try:
 		gps.start()
 		while True:
-			print "hey"
-			#os.system('clear')
+			
+			os.system('clear')
 			print "lat" , gpsd.fix.latitude
-			print "long" , gpsd.fix.longitude
+			print"long" , gpsd.fix.longitude
 			time.sleep(5)
 		
 
-	except(KeyboardInterrupt, SystemExit):
-		print "\nKilling Thread.."
-		gpsd.running = False
+	except (KeyboardInterrupt, SystemExit):
+			print "\nKilling Thread.."			gpsd.running = False
 		gpsd.join()
 	print "Done.\n Exitiing."
