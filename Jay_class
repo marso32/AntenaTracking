@@ -1,3 +1,8 @@
+import sys
+import time
+import math
+
+
 class servo():
 	def __init__(self,channel,direction,position,old_position):
 		self.direction = direction
